@@ -1,21 +1,22 @@
+// ignore_for_file: avoid_print
+
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dtlive/model/avatarmodel.dart';
 import 'package:dtlive/model/castdetailmodel.dart';
-import 'package:dtlive/model/couponmodel.dart';
-import 'package:dtlive/model/historymodel.dart';
-import 'package:dtlive/model/pagesmodel.dart';
-import 'package:dtlive/model/paymentoptionmodel.dart';
-import 'package:dtlive/model/paytmmodel.dart';
-import 'package:dtlive/model/subscriptionmodel.dart';
 import 'package:dtlive/model/channelsectionmodel.dart';
+import 'package:dtlive/model/couponmodel.dart';
 import 'package:dtlive/model/episodebyseasonmodel.dart';
 import 'package:dtlive/model/generalsettingmodel.dart';
 import 'package:dtlive/model/genresmodel.dart';
+import 'package:dtlive/model/historymodel.dart';
 import 'package:dtlive/model/langaugemodel.dart';
 import 'package:dtlive/model/loginregistermodel.dart';
+import 'package:dtlive/model/pagesmodel.dart';
+import 'package:dtlive/model/paymentoptionmodel.dart';
+import 'package:dtlive/model/paytmmodel.dart';
 import 'package:dtlive/model/profilemodel.dart';
 import 'package:dtlive/model/rentmodel.dart';
 import 'package:dtlive/model/searchmodel.dart';
@@ -23,6 +24,7 @@ import 'package:dtlive/model/sectionbannermodel.dart';
 import 'package:dtlive/model/sectiondetailmodel.dart';
 import 'package:dtlive/model/sectionlistmodel.dart';
 import 'package:dtlive/model/sectiontypemodel.dart';
+import 'package:dtlive/model/subscriptionmodel.dart';
 import 'package:dtlive/model/successmodel.dart';
 import 'package:dtlive/model/tvcodemodel.dart';
 import 'package:dtlive/model/videobyidmodel.dart';
@@ -244,11 +246,18 @@ class ApiService {
   // get_type API
   Future<SectionTypeModel> sectionType() async {
     SectionTypeModel sectionTypeModel;
-    String sectionType = "3000";
+    String sectionType = "api/";
     Response response = await dio.post(
       '$baseUrl$sectionType',
       options: optHeaders,
     );
+
+    // Corregido: print ahora toma los dos parámetros como texto
+    print('Hola, esto es un mensaje en la consola! $response');
+
+    // Si deseas ver el cuerpo de la respuesta (datos), puedes usar response.data
+    print('Datos de la respuesta: ${response.data}');
+
     sectionTypeModel = SectionTypeModel.fromJson(response.data);
     return sectionTypeModel;
   }

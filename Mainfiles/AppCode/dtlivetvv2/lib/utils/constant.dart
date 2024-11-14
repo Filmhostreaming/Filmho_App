@@ -2,7 +2,7 @@ import 'package:dtlive/model/qualitymodel.dart';
 import 'package:dtlive/model/subtitlemodel.dart';
 
 class Constant {
-  static const String baseurl = 'http://localhost:';
+  static const String baseurl = 'https://www.filmho.com/admin/';
 
   static String? appName = "DTLive";
   static String? appPackageName = "com.divinetechs.dtlivetv";
